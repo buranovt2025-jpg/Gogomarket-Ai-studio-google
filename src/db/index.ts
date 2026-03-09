@@ -59,6 +59,26 @@ db.exec(`
     FOREIGN KEY(follower_id) REFERENCES users(id),
     FOREIGN KEY(following_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS likes (
+    user_id TEXT,
+    listing_id TEXT,
+    PRIMARY KEY(user_id, listing_id),
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(listing_id) REFERENCES listings(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT,
+    type TEXT, -- 'like', 'follow', 'message'
+    from_user_id TEXT,
+    listing_id TEXT,
+    is_read INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(id),
+    FOREIGN KEY(from_user_id) REFERENCES users(id)
+  );
 `);
 
 export default db;
