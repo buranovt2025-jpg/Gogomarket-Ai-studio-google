@@ -1,0 +1,9 @@
+{
+  "name": "Gogomarket",
+  "description": "Social Marketplace with Stories, Reels and AI-powered listings.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
